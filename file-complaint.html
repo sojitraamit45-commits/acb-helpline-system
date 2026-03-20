@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Complaint - ACB Helpline</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5em; }
+        .back-link { background: white; color: #667eea; padding: 10px 20px; border-radius: 20px; text-decoration: none; }
+        .container { max-width: 800px; margin: 0 auto; padding: 30px; }
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 8px; color: #333; font-weight: 500; }
+        input, textarea, select { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1em; font-family: inherit; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #667eea; }
+        textarea { min-height: 150px; resize: vertical; }
+        .file-upload {
+            border: 2px dashed #e0e0e0;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .file-upload:hover { border-color: #667eea; background: #f9f9f9; }
+        .file-upload input { display: none; }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .note {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📝 File New Complaint</h1>
+        <a href="citizen-dashboard.html" class="back-link">← Back to Dashboard</a>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <div class="note">
+                <strong>⚠️ Important:</strong> Please provide accurate and detailed information. False complaints may lead to legal action.
+            </div>
+
+            <form id="complaintForm">
+                <div class="form-group">
+                    <label for="category">Complaint Category *</label>
+                    <select id="category" required>
+                        <option value="">Select Category</option>
+                        <option value="bribery">Bribery</option>
+                        <option value="corruption">Corruption</option>
+                        <option value="misuse">Misuse of Power</option>
+                        <option value="fraud">Fraud</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" placeholder="Brief description of the complaint" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Department Involved *</label>
+                    <input type="text" id="department" placeholder="e.g., Municipal Corporation, Police, Revenue" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location *</label>
+                    <input type="text" id="location" placeholder="Where did the incident occur?" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date of Incident *</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Detailed Description *</label>
+                    <textarea id="description" placeholder="Provide complete details of the incident, including names, amounts, witnesses, etc." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Evidence (Photos, Documents, Audio, Video)</label>
+                    <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                        <input type="file" id="fileInput" multiple accept="image/*,video/*,audio/*,.pdf,.doc,.docx">
+                        <p>📎 Click to upload files or drag and drop</p>
+                        <p style="font-size: 0.9em; color: #666; margin-top: 10px;">Supports: Images, Videos, Audio, PDF, Word documents</p>
+                    </div>
+                    <div id="fileList" style="margin-top: 10px;"></div>
+                </div>
+
+                <button type="submit" class="btn">Submit Complaint</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            for(let file of e.target.files) {
+                const fileItem = document.createElement('div');
+                fileItem.textContent = '📄 ' + file.name;
+                fileItem.style.padding = '5px';
+                fileList.appendChild(fileItem);
+            }
+        });
+
+        document.getElementById('complaintForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const complaintId = 'ACB' + new Date().getFullYear() + Math.floor(Math.random() * 10000).toString().padStart(3, '0');
+            alert('Complaint submitted successfully!\n\nComplaint ID: ' + complaintId + '\n\nYou will receive updates via SMS and notifications.');
+            setTimeout(() => {
+                window.location.href = 'citizen-dashboard.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
