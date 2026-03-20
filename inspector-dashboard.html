@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Inspector Dashboard - ACB Helpline</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logout { background: white; color: #667eea; padding: 10px 20px; border-radius: 20px; text-decoration: none; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 30px; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-number { font-size: 2.5em; font-weight: bold; color: #667eea; }
+        .cases-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .case-item {
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .btn { padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; margin-top: 10px; }
+        .btn-success { background: #28a745; }
+        .btn-danger { background: #dc3545; }
+        textarea { width: 100%; padding: 10px; margin-top: 10px; border: 2px solid #e0e0e0; border-radius: 5px; min-height: 100px; }
+        .form-group { margin-top: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        select { padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; width: 100%; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚔 Police Inspector Dashboard - PI Sharma</h1>
+        <a href="index.html" class="logout">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Active Cases</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Evidence Collected</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Under Investigation</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">14</div>
+                <div class="stat-label">Closed Cases</div>
+            </div>
+        </div>
+
+        <div class="cases-section">
+            <h2 style="margin-bottom: 25px;">🔎 Active Investigations</h2>
+
+            <div class="case-item">
+                <h3>Case #ACB2024045 - Bribery Complaint (HIGH PRIORITY)</h3>
+                <p><strong>Assigned From:</strong> Field AD - Mumbai Central</p>
+                <p><strong>Accused:</strong> Ramesh Patil, Municipal Officer</p>
+                <p><strong>Location:</strong> Dadar Municipal Office</p>
+                <p><strong>Amount:</strong> ₹50,000 demanded</p>
+                <p style="margin-top: 15px; color: #666;"><strong>Investigation Status:</strong> Evidence collected - Audio recording verified. Suspect under surveillance.</p>
+
+                <div class="form-group">
+                    <label>Investigation Report:</label>
+                    <textarea id="report45" placeholder="Enter investigation findings, evidence collected, witness statements...">Audio evidence verified authentic. Witness statements recorded from 3 complainants. Suspect Ramesh Patil tracked accepting bribe on March 18, 2024. Bank transaction evidence obtained. Case ready for closure.</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Case Outcome:</label>
+                    <select id="outcome45">
+                        <option value="">Select Outcome</option>
+                        <option value="proven">Complaint Proven - Action Taken</option>
+                        <option value="insufficient">Insufficient Evidence</option>
+                        <option value="false">False Complaint</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button class="btn" onclick="updateProgress('ACB2024045')">Update Progress</button>
+                    <button class="btn btn-success" onclick="closeCase('ACB2024045')">Close Case</button>
+                    <button class="btn btn-danger" onclick="requestSupport('ACB2024045')">Request Support</button>
+                </div>
+            </div>
+
+            <div class="case-item">
+                <h3>Case #ACB2024050 - Traffic Police Extortion</h3>
+                <p><strong>Assigned From:</strong> Field AD - Mumbai Central</p>
+                <p><strong>Accused:</strong> Constable Vijay More</p>
+                <p><strong>Location:</strong> Worli Sea Link Toll Plaza</p>
+                <p style="margin-top: 15px; color: #666;"><strong>Investigation Status:</strong> Dashcam footage under review. Interviewing witnesses.</p>
+
+                <div class="form-group">
+                    <label>Investigation Report:</label>
+                    <textarea id="report50" placeholder="Enter investigation findings..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Case Outcome:</label>
+                    <select id="outcome50">
+                        <option value="">Select Outcome</option>
+                        <option value="proven">Complaint Proven - Action Taken</option>
+                        <option value="insufficient">Insufficient Evidence</option>
+                        <option value="false">False Complaint</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button class="btn" onclick="updateProgress('ACB2024050')">Update Progress</button>
+                    <button class="btn btn-success" onclick="closeCase('ACB2024050')">Close Case</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateProgress(caseId) {
+            alert('Investigation progress updated for case ' + caseId + '\nCitizen will receive SMS notification.');
+        }
+
+        function closeCase(caseId) {
+            const outcome = document.getElementById('outcome' + caseId.slice(-2)).value;
+            const report = document.getElementById('report' + caseId.slice(-2)).value;
+
+            if(!outcome || !report.trim()) {
+                alert('Please complete investigation report and select outcome before closing case.');
+                return;
+            }
+
+            if(confirm('Are you sure you want to close case ' + caseId + '?\n\nOutcome: ' + outcome + '\n\nThis will notify the citizen and all officers in the chain.')) {
+                alert('✅ Case ' + caseId + ' closed successfully!\n\n📧 Notifications sent to:\n- Citizen (SMS + App)\n- Field AD\n- Director\n- AD HQ\n\nFeedback form sent to citizen.');
+                window.location.reload();
+            }
+        }
+
+        function requestSupport(caseId) {
+            alert('Support request sent to Field AD for case ' + caseId);
+        }
+    </script>
+</body>
+</html>
