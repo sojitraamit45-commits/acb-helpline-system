@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ACB Helpline</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logout { background: white; color: #667eea; padding: 10px 20px; border-radius: 20px; text-decoration: none; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 30px; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-number { font-size: 2.5em; font-weight: bold; color: #667eea; }
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background: #f9f9f9; font-weight: bold; color: #667eea; }
+        .btn { padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 5px; }
+        .btn-success { background: #28a745; }
+        .btn-danger { background: #dc3545; }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .tab.active { border-bottom-color: #667eea; color: #667eea; font-weight: bold; }
+        .tab:hover { background: #f9f9f9; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚙️ Admin Dashboard - System Management</h1>
+        <a href="index.html" class="logout">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">1,247</div>
+                <div class="stat-label">Total Citizens</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">89</div>
+                <div class="stat-label">ACB Officers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">523</div>
+                <div class="stat-label">Total Complaints</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98.2%</div>
+                <div class="stat-label">System Uptime</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('users')">👥 Users</div>
+                <div class="tab" onclick="showTab('officers')">👮 Officers</div>
+                <div class="tab" onclick="showTab('reports')">📊 Reports</div>
+                <div class="tab" onclick="showTab('settings')">⚙️ Settings</div>
+            </div>
+
+            <div id="usersTab">
+                <h2>Registered Citizens</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Aadhar (Masked)</th>
+                            <th>Mobile</th>
+                            <th>State</th>
+                            <th>Complaints Filed</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Amit Patel</td>
+                            <td>****-****-5678</td>
+                            <td>9876543210</td>
+                            <td>Maharashtra</td>
+                            <td>2</td>
+                            <td><span style="color: green;">Active</span></td>
+                            <td>
+                                <button class="btn">View</button>
+                                <button class="btn btn-danger">Block</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rajesh Kumar</td>
+                            <td>****-****-1234</td>
+                            <td>9988776655</td>
+                            <td>Gujarat</td>
+                            <td>5</td>
+                            <td><span style="color: green;">Active</span></td>
+                            <td>
+                                <button class="btn">View</button>
+                                <button class="btn btn-danger">Block</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Priya Sharma</td>
+                            <td>****-****-9012</td>
+                            <td>9123456789</td>
+                            <td>Maharashtra</td>
+                            <td>1</td>
+                            <td><span style="color: green;">Active</span></td>
+                            <td>
+                                <button class="btn">View</button>
+                                <button class="btn btn-danger">Block</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📈 System Analytics (Last 30 Days)</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="background: #e3f2fd; padding: 20px; border-radius: 10px;">
+                    <h3 style="color: #1976d2;">147 New Complaints</h3>
+                    <p style="margin-top: 10px;">↑ 23% from last month</p>
+                </div>
+                <div style="background: #fff3e0; padding: 20px; border-radius: 10px;">
+                    <h3 style="color: #f57c00;">98 Cases Closed</h3>
+                    <p style="margin-top: 10px;">↑ 15% from last month</p>
+                </div>
+                <div style="background: #e8f5e9; padding: 20px; border-radius: 10px;">
+                    <h3 style="color: #388e3c;">89% Resolution Rate</h3>
+                    <p style="margin-top: 10px;">↑ 5% from last month</p>
+                </div>
+                <div style="background: #fce4ec; padding: 20px; border-radius: 10px;">
+                    <h3 style="color: #c2185b;">7.2 Days Avg Response</h3>
+                    <p style="margin-top: 10px;">↓ 2 days improvement</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            alert('Switching to ' + tabName + ' tab (feature in development)');
+        }
+    </script>
+</body>
+</html>
