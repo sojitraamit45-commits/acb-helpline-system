@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification - ACB Helpline</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 { color: #667eea; margin-bottom: 20px; }
+        .otp-info { color: #666; margin-bottom: 30px; }
+        .otp-inputs { display: flex; gap: 10px; justify-content: center; margin-bottom: 30px; }
+        .otp-input { width: 50px; height: 50px; text-align: center; font-size: 1.5em; border: 2px solid #e0e0e0; border-radius: 8px; }
+        .otp-input:focus { outline: none; border-color: #667eea; }
+        .btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; }
+        .resend { margin-top: 20px; color: #667eea; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Verify OTP</h1>
+        <p class="otp-info">Enter the 6-digit OTP sent to your mobile</p>
+        <div class="otp-inputs">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+        </div>
+        <button class="btn" onclick="verifyOTP()">Verify</button>
+        <p class="resend">Resend OTP</p>
+    </div>
+    <script>
+        const inputs = document.querySelectorAll('.otp-input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if(e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+        });
+        function verifyOTP() {
+            alert('OTP verified successfully!');
+            window.location.href = 'citizen-dashboard.html';
+        }
+    </script>
+</body>
+</html>
