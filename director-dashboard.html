@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Director Dashboard - ACB Helpline</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logout { background: white; color: #667eea; padding: 10px 20px; border-radius: 20px; text-decoration: none; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 30px; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-number { font-size: 2.5em; font-weight: bold; color: #667eea; }
+        .cases-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .case-item {
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .btn { padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; }
+        .btn-success { background: #28a745; }
+        select { padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>👔 Director Dashboard - Zone A</h1>
+        <a href="index.html" class="logout">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">23</div>
+                <div class="stat-label">Assigned Cases</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Pending Review</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15</div>
+                <div class="stat-label">In Field</div>
+            </div>
+        </div>
+
+        <div class="cases-section">
+            <h2 style="margin-bottom: 25px;">📋 Cases Pending Assignment to Field AD</h2>
+
+            <div class="case-item">
+                <h3>Case #ACB2024045 - Bribery Complaint</h3>
+                <p><strong>Assigned From:</strong> AD HQ</p>
+                <p><strong>Location:</strong> Mumbai, Maharashtra</p>
+                <p><strong>Category:</strong> Bribery in Municipal Corporation</p>
+                <p><strong>Priority:</strong> High</p>
+                <p style="margin-top: 15px; color: #666;">Municipal officer demanding ₹50,000 for building permit. Evidence: Audio recording attached.</p>
+                <div style="margin-top: 15px;">
+                    <select id="assignFieldAD45">
+                        <option value="">Select Field AD</option>
+                        <option value="fad1">Field AD - Mumbai Central</option>
+                        <option value="fad2">Field AD - Mumbai South</option>
+                        <option value="fad3">Field AD - Mumbai North</option>
+                    </select>
+                    <button class="btn btn-success" onclick="forwardCase('ACB2024045')">Forward to Field AD</button>
+                    <button class="btn" onclick="viewEvidence('ACB2024045')">View Evidence</button>
+                </div>
+            </div>
+
+            <div class="case-item">
+                <h3>Case #ACB2024048 - Illegal Land Grab</h3>
+                <p><strong>Assigned From:</strong> AD HQ</p>
+                <p><strong>Location:</strong> Thane, Maharashtra</p>
+                <p><strong>Category:</strong> Land Fraud</p>
+                <p><strong>Priority:</strong> Medium</p>
+                <p style="margin-top: 15px; color: #666;">Revenue officer manipulating land records for personal gain. Multiple complainants.</p>
+                <div style="margin-top: 15px;">
+                    <select id="assignFieldAD48">
+                        <option value="">Select Field AD</option>
+                        <option value="fad1">Field AD - Mumbai Central</option>
+                        <option value="fad2">Field AD - Mumbai South</option>
+                        <option value="fad3">Field AD - Mumbai North</option>
+                    </select>
+                    <button class="btn btn-success" onclick="forwardCase('ACB2024048')">Forward to Field AD</button>
+                    <button class="btn" onclick="viewEvidence('ACB2024048')">View Evidence</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function forwardCase(caseId) {
+            alert('Case ' + caseId + ' forwarded successfully to Field AD!\nField AD will receive notification and case details.');
+        }
+        function viewEvidence(caseId) {
+            alert('Opening evidence files for case ' + caseId);
+        }
+    </script>
+</body>
+</html>
